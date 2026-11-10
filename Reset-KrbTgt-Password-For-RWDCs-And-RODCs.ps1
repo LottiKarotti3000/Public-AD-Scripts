@@ -6602,39 +6602,49 @@ Add-Type -AssemblyName System.DirectoryServices.Protocols -ErrorAction STOP
 ###
 # Start Of Script
 ###
-### Presentation Of Script Header
-writeLog -dataToLog ""
-writeLog -dataToLog "                                          **********************************************************" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "                                          *                                                        *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "                                          *  --> Reset KrbTgt Account Password For RWDCs/RODCs <-- *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "                                          *                                                        *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "                                          *     Re-Written By: Jorge de Almeida Pinto [MVP-EMS]    *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "                                          *                                                        *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "                                          *            BLOG: Jorge's Quest For Knowledge           *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "                                          *   (URL: http://jorgequestforknowledge.wordpress.com/)  *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "                                          *                                                        *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "                                          *                    $version                    *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "                                          *                                                        *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "                                          **********************************************************" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog ""
+if ($noInfo -ne $true) {
+	### Presentation Of Script Header
+	writeLog -dataToLog ""
+	writeLog -dataToLog "                                          **********************************************************" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "                                          *                                                        *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "                                          *  --> Reset KrbTgt Account Password For RWDCs/RODCs <-- *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "                                          *                                                        *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "                                          *     Re-Written By: Jorge de Almeida Pinto [MVP-EMS]    *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "                                          *                                                        *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "                                          *            BLOG: Jorge's Quest For Knowledge           *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "                                          *   (URL: http://jorgequestforknowledge.wordpress.com/)  *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "                                          *                                                        *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "                                          *                    $version                    *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "                                          *                                                        *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "                                          **********************************************************" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog ""
 
-# SOURCE: http://patorjk.com/software/taag/#p=display&f=Graffiti&t=KrbTGT%20Password%20Reset
-writeLog -dataToLog " ____  __.     ___. ______________________________ __________                                               .___ __________                      __" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "|    |/ _|_____\_ |_\__    ___/  _____/\__    ___/ \______   \_____    ______ ________  _  _____________  __| _/ \______   \ ____   ______ _____/  |" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "|      < \_  __ \ __ \|    | /   \  ___  |    |     |     ___/\__  \  /  ___//  ___/\ \/ \/ /  _ \_  __ \/ __ |   |       _// __ \ /  ___// __ \   __\" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "|    |  \ |  | \/ \_\ \    | \    \_\  \ |    |     |    |     / __ \_\___ \ \___ \  \     (  <_> )  | \/ /_/ |   |    |   \  ___/ \___ \\  ___/|  |" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "|____|__ \|__|  |___  /____|  \______  / |____|     |____|    (____  /____  >____  >  \/\_/ \____/|__|  \____ |   |____|_  /\___  >____  >\___  >__|" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "        \/          \/               \/                            \/     \/     \/                          \/          \/     \/     \/     \/" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog ""
+	# SOURCE: http://patorjk.com/software/taag/#p=display&f=Graffiti&t=KrbTGT%20Password%20Reset
+	writeLog -dataToLog " ____  __.     ___. ______________________________ __________                                               .___ __________                      __" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "|    |/ _|_____\_ |_\__    ___/  _____/\__    ___/ \______   \_____    ______ ________  _  _____________  __| _/ \______   \ ____   ______ _____/  |" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "|      < \_  __ \ __ \|    | /   \  ___  |    |     |     ___/\__  \  /  ___//  ___/\ \/ \/ /  _ \_  __ \/ __ |   |       _// __ \ /  ___// __ \   __\" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "|    |  \ |  | \/ \_\ \    | \    \_\  \ |    |     |    |     / __ \_\___ \ \___ \  \     (  <_> )  | \/ /_/ |   |    |   \  ___/ \___ \\  ___/|  |" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "|____|__ \|__|  |___  /____|  \______  / |____|     |____|    (____  /____  >____  >  \/\_/ \____/|__|  \____ |   |____|_  /\___  >____  >\___  >__|" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "        \/          \/               \/                            \/     \/     \/                          \/          \/     \/     \/     \/" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog ""
 
-# http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Provided%20By%20IAMTEC
-writeLog -dataToLog "           __________                    .__    .___         .___ __________         .___   _____      ____________________________________" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "           \______   \_______  _______  _|__| __| _/____   __| _/ \______   \___.__. |   | /  _  \    /     \__    ___/\_   _____/\_   ___ \" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "            |     ___/\_  __ \/  _ \  \/ /  |/ __ |/ __ \ / __ |   |    |  _<   |  | |   |/  /_\  \  /  \ /  \|    |    |    __)_ /    \  \/" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "            |    |     |  | \(  <_> )   /|  / /_/ \  ___// /_/ |   |    |   \\___  | |   /    |    \/    Y    \    |    |        \\     \____" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "            |____|     |__|   \____/ \_/ |__\____ |\___  >____ |   |______  // ____| |___\____|__  /\____|__  /____|   /_______  / \______  /" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog "                                                 \/    \/     \/          \/ \/                  \/         \/                 \/         \/" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
-writeLog -dataToLog ""
+	# http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Provided%20By%20IAMTEC
+	writeLog -dataToLog "           __________                    .__    .___         .___ __________         .___   _____      ____________________________________" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "           \______   \_______  _______  _|__| __| _/____   __| _/ \______   \___.__. |   | /  _  \    /     \__    ___/\_   _____/\_   ___ \" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "            |     ___/\_  __ \/  _ \  \/ /  |/ __ |/ __ \ / __ |   |    |  _<   |  | |   |/  /_\  \  /  \ /  \|    |    |    __)_ /    \  \/" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "            |    |     |  | \(  <_> )   /|  / /_/ \  ___// /_/ |   |    |   \\___  | |   /    |    \/    Y    \    |    |        \\     \____" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "            |____|     |__|   \____/ \_/ |__\____ |\___  >____ |   |______  // ____| |___\____|__  /\____|__  /____|   /_______  / \______  /" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "                                                 \/    \/     \/          \/ \/                  \/         \/                 \/         \/" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog ""
+}
+Else {
+	writeLog -dataToLog ""
+	writeLog -dataToLog "   **********************************************************" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "   *  --> Reset KrbTgt Account Password For RWDCs/RODCs <-- *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "   *                    $version                    *" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog "   **********************************************************" -lineType "MAINHEADER" -logFileOnly $false -noDateTimeInLogLine $false
+	writeLog -dataToLog ""
+}
 
 ###
 # Script Details
